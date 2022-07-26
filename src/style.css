@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font-family: monospace;
+}
+
+:root {
+    --base: #B0DAFF;
+    --main:#F0f8ff;
+    --accent: #70BCFF;
+}
+
+.logo {
+    display: flex;
+    background-color: var(--base);
+    color: var(--main);
+    font-size: 3rem;
+    padding: 1rem;
+}
+
+main {
+    display: flex;
+}
+
+nav {
+    flex-grow: 1;
+}
+
+footer {
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: var(--base);
+    color: var(--main);
+}
+
+.project-view {
+    flex-grow: 1;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
