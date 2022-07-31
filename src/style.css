@@ -3,6 +3,12 @@ body {
     font-family: monospace;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 :root {
     --base: #B0DAFF;
     --main:#F0f8ff;
@@ -26,7 +32,7 @@ nav {
 }
 
 footer {
-    margin-top: 2rem;
+    margin-top: auto;
     padding: 2rem;
     background-color: var(--base);
     color: var(--main);
@@ -34,6 +40,11 @@ footer {
 
 .project-view {
     flex-grow: 1;
+}
+
+.project-view-title {
+    font-size: 2rem;
+    font-weight: 900;
 }
 
 .form-container {
@@ -45,4 +56,51 @@ footer {
 
 .hidden {
     display: none;
+}
+
+.dummy-project:hover {
+    background-color: var(--base);
+}
+
+.active {
+    background-color: var(--accent);
+}
+
+.toDoDiv {
+    background-color: var(--base);
+    border-radius: 25px;
+    border: 2px solid var(--accent);
+    margin-bottom: 5px;
+}
+
+.project-view-header {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.add-todo-button {
+    background-color: var(--main);
+    border: 2px solid var(--base);
+    border-radius: 10px;
+}
+
+.add-todo-button:hover {
+    background-color: var(--base);
+    border: 2px solid var(--accent);
+}
+
+.project-todo-list {
+    display: flex;
+    flex-direction: column;
+}
+
+#todo-entry-form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#todo-entry {
+    width: 75%;
+    margin-right: auto;
 }

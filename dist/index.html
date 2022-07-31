@@ -7,45 +7,57 @@
     <title>To-do List 2</title>
 </head>
 <body>
+  <div class="flex-column">
     <header>
-        <div class="logo">
-          <div>To-do List</div>
-        </div>
-      </header>
-      <main>
-        <nav class="nav">
-          <h1>Projects</h1>
-          <div class="project-list">
-            <div class="dummy-project">
-              Dummy Project
-            </div>
-          </div>
-          <button class="add-project-button">Add Project</button>
-        </nav>
-        <div class="project-view">
-            <h1>Whatever Project title</h1>
-            <div class="project-todo-list">
-                <div>
-                    To do item 1
-                </div>
-            </div>
-        </div>
-      </main>
-      <div class="form-container hidden">
-        <form id="projectForm">
-            <input type="text" id="title" name="title" placeholder="Title">
-            <input type="text" id="description" name="description" placeholder="Description">
-            <input type="text" id="dueDate" name="dueDate" placeholder="Due Date">
-            <input type="text" id="priority" name="priority" placeholder="Priority">
-            <br>
-            <label for="done">Done</label>
-            <input type="checkbox" id="done" name="done" value="done">
-            <br>
-            <input type="submit" value="Submit" id="submit">
-            <input type="button" value="Close" id="close">
-        </form>
+      <div class="logo">
+        <div>To-do List</div>
       </div>
-      <footer>This is the footer</footer>
+    </header>
+    <main>
+      <nav class="nav">
+        <h1>Projects</h1>
+        <div class="project-list">
+          <div class="dummy-project">
+            Dummy Project
+          </div>
+        </div>
+        <button class="add-project-button">Add Project</button>
+      </nav>
+      <div class="project-view">
+        <div class="project-view-header">
+          <div class="project-view-title">
+            Whatever Project title
+        </div>
+        <form id="todo-entry-form">
+          <input type="text" id="todo-entry">
+          <input type="date" name="todo-due-date" id="todo-due-date">
+          <button type="submit" class="add-todo-button">Add Todo</button>
+        </form>
+        </div>
+          <div class="project-todo-list">
+              <div>
+                  To do item 1
+              </div>
+          </div>
+      </div>
+    </main>
+    <div class="form-container hidden">
+      <form id="projectForm">
+          <input type="text" id="title" name="title" placeholder="Title">
+          <input type="text" id="description" name="description" placeholder="Description">
+          <input type="text" id="dueDate" name="dueDate" placeholder="Due Date">
+          <input type="text" id="priority" name="priority" placeholder="Priority">
+          <br>
+          <label for="done">Done</label>
+          <input type="checkbox" id="done" name="done" value="done">
+          <br>
+          <input type="submit" value="Submit" id="submit">
+          <input type="button" value="Close" id="close">
+      </form>
+    </div>
+    <footer>This is the footer</footer>
+  </div>
+   
       <script src="bundle.js"></script>
 </body>
 </html>

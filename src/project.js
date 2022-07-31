@@ -10,13 +10,19 @@ const projectFactory = (title, description, dueDate, priority) => {
                     ];
     let notes = '';
 
+    let todoList = {
+        text: '',
+        checked: false
+    }
+
 
     //Needs to change
-    const addTaskToChecklist = (nameOfTask, done) => {
-        let task = {
-            task: nameOfTask,
-            complete: done
-                };
+    const addTaskToChecklist = (nameOfTask, dueDate) => {
+        // let task = {
+        //     taskName: nameOfTask,
+        //     due: dueDate
+        // }
+        let task = nameOfTask;
         checklist.push(task);
     }
 
@@ -26,7 +32,7 @@ const projectFactory = (title, description, dueDate, priority) => {
     }
     
 
-    return {title, description, dueDate, priority, checklist, notes, addTaskToChecklist, markTaskAsComplete}
+    return {title, description, dueDate, priority, checklist, todoList, notes, addTaskToChecklist, markTaskAsComplete}
 }
 
 

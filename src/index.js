@@ -5,11 +5,85 @@ import { projectFormPopUp, hideSubmitForm } from './projectForm';
 const addProjectButton = document.querySelector('.add-project-button');
 const submitProjectButton = document.querySelector('#submit');
 const closeProjectButton = document.querySelector('#close');
+const projectToDoList = document.querySelector('.project-todo-list');
+const addTodoButton = document.querySelector('.add-todo-button');
 let projectList = [];
 
 addProjectButton.addEventListener('click', projectFormPopUp);
 closeProjectButton.addEventListener('click', hideSubmitForm);
 
+
+const addToDo = (e) => {
+  e.preventDefault();
+  //use key to select object in projectList array
+   let thisProject = projectList[e.target.getAttribute("data-key")];
+
+   let todoEntry = document.querySelector('#todo-entry').value;
+   let dueDate = document.querySelector('#todo-due-date');
+   
+     //validate
+  if(todoEntry == '' || dueDate == ''){
+    alert('Please fill in all fields or select a date');
+} else {
+      thisProject.addTaskToChecklist(todoEntry, dueDate);
+      displayProjectToDos(thisProject.checklist)
+      document.getElementById("todo-entry-form").reset();
+    }  
+    console.log(thisProject);  
+}
+
+   
+
+
+addTodoButton.addEventListener('click', addToDo);
+
+const displayProjectToDos = (checklistArray) => {
+  //clear project todos from dom
+  while(projectToDoList.firstChild) {
+    projectToDoList.removeChild(projectToDoList.lastChild);
+  }
+
+  //add project todos to dom
+  checklistArray.forEach((element) => {
+    let toDoDiv = document.createElement('div');
+    toDoDiv.innerHTML = element;
+    toDoDiv.classList.add('toDoDiv');
+    projectToDoList.appendChild(toDoDiv);
+
+  });
+}
+
+const selectThisProject = (e) => {
+  let key = e.target.getAttribute("data-key");
+  let thisProject = projectList[e.target.getAttribute("data-key")];
+  let projectTitle = document.querySelector(".project-view-title");
+  projectTitle.innerHTML = thisProject.title;
+
+  //remove data-key from addTodoButton, add new data-key
+  if(addTodoButton.getAttribute("data-key") == key){
+    return
+  } else {
+    addTodoButton.setAttribute("data-key", key)
+  }
+
+  displayProjectToDos(thisProject.checklist);
+
+  //check to see which project object is active
+  console.log(addTodoButton.getAttribute("data-key"));
+
+}
+
+const addToProjectsList = () => {
+  let recentProject = projectList[projectList.length - 1];
+  let projectDiv = document.createElement('div');
+    projectDiv.addEventListener('click', selectThisProject);
+    projectDiv.innerHTML = recentProject.title;
+    projectDiv.setAttribute('data-key', projectList.indexOf(recentProject));
+    projectDiv.classList.add("dummy-project");
+    let projectListDiv = document.querySelector(".project-list");
+    projectListDiv.appendChild(projectDiv);
+   // console.log(projectList);
+}
 
 //SUBMIT HAS TO GO IN INDEX BECAUSE OF CALL TO NEW PROJECT
 
@@ -27,14 +101,15 @@ const submitProjectForm = () => {
   } else {
       const project = projectFactory(title, description, dueDate, priority);
       projectList.push(project);
-  }
+   }
 }
 
 submitProjectButton.addEventListener('click', (e) => {
   e.preventDefault();
   submitProjectForm();
+  addToProjectsList();
+  
   document.getElementById("projectForm").reset();
-  console.log(projectList);
     }
 );
 
