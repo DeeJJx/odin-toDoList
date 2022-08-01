@@ -8,6 +8,7 @@ const closeProjectButton = document.querySelector('#close');
 const projectToDoList = document.querySelector('.project-todo-list');
 const addTodoButton = document.querySelector('.add-todo-button');
 let projectList = [];
+let activeProject;
 
 addProjectButton.addEventListener('click', projectFormPopUp);
 closeProjectButton.addEventListener('click', hideSubmitForm);
@@ -32,7 +33,10 @@ const addToDo = (e) => {
     console.log(thisProject);  
 }
 
-   
+const removeToDo = (e) => {
+  activeProject.checklist.removeChild(e.target.getAttribute("data-key"));
+  displayProjectToDos(activeProject.checklist);
+}   
 
 
 addTodoButton.addEventListener('click', addToDo);
@@ -45,9 +49,22 @@ const displayProjectToDos = (checklistArray) => {
 
   //add project todos to dom
   checklistArray.forEach((element) => {
+      //create remove todo button and append to project div
+    let removeProjectDivButton = document.createElement('div');
+    removeProjectDivButton.addEventListener('click', removeToDo);
+    removeProjectDivButton.innerHTML = 'remove';
+    removeProjectDivButton.setAttribute('data-key', checklistArray.indexOf(element));
+    removeProjectDivButton.classList.add('remove-todo');
+    //create todo div
     let toDoDiv = document.createElement('div');
-    toDoDiv.innerHTML = element;
+
+    let toDo = document.createElement('div');
+    toDo.classList.add('toDo');
+    toDo.innerHTML = element;
+
     toDoDiv.classList.add('toDoDiv');
+    toDoDiv.appendChild(toDo);
+    toDoDiv.appendChild(removeProjectDivButton);
     projectToDoList.appendChild(toDoDiv);
 
   });
@@ -56,6 +73,7 @@ const displayProjectToDos = (checklistArray) => {
 const selectThisProject = (e) => {
   let key = e.target.getAttribute("data-key");
   let thisProject = projectList[e.target.getAttribute("data-key")];
+  activeProject = projectList[e.target.getAttribute("data-key")];
   let projectTitle = document.querySelector(".project-view-title");
   projectTitle.innerHTML = thisProject.title;
 
@@ -74,7 +92,9 @@ const selectThisProject = (e) => {
 }
 
 const addToProjectsList = () => {
+  //target last project in projectList
   let recentProject = projectList[projectList.length - 1];
+  //create Project div
   let projectDiv = document.createElement('div');
     projectDiv.addEventListener('click', selectThisProject);
     projectDiv.innerHTML = recentProject.title;

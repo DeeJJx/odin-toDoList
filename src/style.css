@@ -68,9 +68,10 @@ footer {
 
 .toDoDiv {
     background-color: var(--base);
-    border-radius: 25px;
     border: 2px solid var(--accent);
     margin-bottom: 5px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .project-view-header {
@@ -103,4 +104,15 @@ footer {
 #todo-entry {
     width: 75%;
     margin-right: auto;
+}
+
+.toDo {
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+}
+
+.remove-todo {
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    margin: 0 10px 0 auto;
 }
